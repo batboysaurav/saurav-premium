@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saurav Premium for Pavas</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: linear-gradient(145deg, #ffffff, #ffe6e6);
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 30px;
+      width: 90%;
+      max-width: 400px;
+      transition: all 0.5s ease;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff6b81;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #444;
+      margin: 15px 0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    li {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    li span {
+      color: #ff6b81;
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, #ff6b81, #f093fb);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      background: linear-gradient(90deg, #f093fb, #ff6b81);
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #ff6b81;
+    }
+
+    .premium-text {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff6b81;
+      animation: floatUp 5s infinite ease-in-out;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Timer Container -->
+  <div id="timer-container" class="container">
+    <h1>Hold on, Miss Pavas! 💖</h1>
+    <p>Your exclusive benefits will unlock in <span id="countdown">5</span> seconds...</p>
+  </div>
+
+  <!-- Quiz Container -->
+  <div id="quiz-container" class="container hidden">
+    <h1>How Well Do You Know Saurav? 💕</h1>
+    <p>Question: What's Saurav's favorite destination?</p>
+    <button class="btn" onclick="answerCorrect()">Manali</button>
+    <button class="btn" onclick="answerWrong()">Goa</button>
+  </div>
+
+  <!-- Premium Features Container -->
+  <div id="premium-container" class="container hidden">
+    <h1>Saurav Premium</h1>
+    <p>Here’s what you get with Saurav Premium:</p>
+    <ul>
+      <li><span>😂</span> <span class="highlight">Great laughs</span> every day.</li>
+      <li><span>🍫</span> Unlimited <span class="highlight">Kinder Joys</span>.</li>
+      <li><span>😘</span> Kisses, hugs (and <span class="highlight">more</span> if you want).</li>
+      <li><span>🤵‍♂️</span> <span class="highlight">Gentleman treatment</span> always.</li>
+      <li><span>🎮</span> Play <span class="highlight">Resident Evil</span> with Saurav.</li>
+      <li><span>🏔️</span> <span class="highlight">Fantasy</span> getaway to Manali.</li>
+      <li><span>🌹</span> A <span class="highlight">companion</span> for life.</li>
+    </ul>
+    <p class="premium-text">
+      Lifetime Only for You, <br> Miss Pavas aka Amavas Brahmavanshi ❤️
+    </p>
+    <button class="btn" onclick="sendPremiumMessage()">Get Premium Now</button>
+  </div>
+
+  <!-- Floating Hearts Animation -->
+  <div class="heart" style="top: 80%; left: 50%;">❤️</div>
+  <div class="heart" style="top: 85%; left: 60%;">💖</div>
+  <div class="heart" style="top: 90%; left: 40%;">💝</div>
+
+  <script>
+    // Timer Logic
+    let countdown = 5;
+    const countdownElement = document.getElementById('countdown');
+
+    const timer = setInterval(() => {
+      countdown--;
+      countdownElement.innerText = countdown;
+
+      if (countdown === 0) {
+        clearInterval(timer);
+        document.getElementById('timer-container').classList.add('hidden');
+        document.getElementById('quiz-container').classList.remove('hidden');
+      }
+    }, 1000);
+
+    // Quiz Logic
+    function answerCorrect() {
+      alert("You got it right! 🌟 Manali it is!");
+      document.getElementById('quiz-container').classList.add('hidden');
+      document.getElementById('premium-container').classList.remove('hidden');
+    }
+
+    function answerWrong() {
+      alert("Close, but not quite! Let's try again. 😉");
+    }
+
+    // Send SMS Logic
+    function sendPremiumMessage() {
+      const phoneNumber = "+919570661297";
+      const message = "It's a YES! ❤️ Ready to explore Saurav Premium for life!";
+      const smsUrl = `sms:${phoneNumber}?body=${encodeURIComponent(message)}`;
+      window.location.href = smsUrl;
+    }
+  </script>
+</body>
+</html>
